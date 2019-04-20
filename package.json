@@ -4,6 +4,11 @@
   "description": "maui integrations control app",
   "main": "src/backend/index.js",
   "scripts": {
+    "start": "nodemon --exec babel-node src/backend/index.js",
+    "watch": "",
+    "build": "",
+    "lint": "./node_modules/.bin/eslint ./src",
+    "fix": "./node_modules/.bin/eslint --fix ./src",
     "test": "jest"
   },
   "repository": {
@@ -21,12 +26,15 @@
   "homepage": "https://github.com/Assper/mauint#readme",
   "devDependencies": {
     "@babel/core": "^7.4.3",
+    "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.4.3",
     "@babel/preset-react": "^7.0.0",
     "babel-jest": "^24.7.1",
     "babel-loader": "^8.0.5",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
+    "eslint": "^5.16.0",
+    "eslint-plugin-react": "^7.12.4",
     "jest": "^24.7.1",
     "nodemon": "^1.18.11",
     "webpack": "^4.30.0",
@@ -35,8 +43,9 @@
   "dependencies": {
     "dotenv": "^7.0.0",
     "koa": "^2.7.0",
+    "koa-body": "^4.1.0",
     "koa-router": "^7.4.0",
-    "koa-static-server": "^1.4.0",
+    "koa-static": "^5.0.0",
     "mongoose": "^5.5.2",
     "mongoose-validator": "^2.1.0",
     "passport": "^0.4.0",
