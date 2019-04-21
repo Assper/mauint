@@ -1,5 +1,5 @@
 import Router from 'koa-router'
-import { login, signup } from '../controllers/auth'
+import { login, signup, restore } from '../controllers/auth'
 import { validator, required } from '../helpers/middlewares'
 import {
   userNameValidator,
@@ -27,4 +27,12 @@ auth.post('/signup',
     password: passwordValidator
   }),
   signup
+)
+
+auth.post('/restore',
+  required(['email']),
+  validator({
+    email: emailValidator
+  }),
+  restore
 )

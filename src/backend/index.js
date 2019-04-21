@@ -1,4 +1,5 @@
 import path from 'path'
+
 import Koa from 'koa'
 import serve from 'koa-static'
 import body from 'koa-body'
@@ -25,12 +26,13 @@ async function start() {
 
     strategiesInit()
     app.use(setApiContentType(app))
+    app.use(body())
+
     app.use(session({ key: sessionKey }))
     app.use(passport.initialize())
     app.use(passport.session())
-    app.use(body())
+
     app.use(serve(path.join(__dirname, '/../../dist/public')))
-    
     app.use(router.auth.routes())
     app.use(router.app.routes())
     
