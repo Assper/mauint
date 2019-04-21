@@ -2,13 +2,17 @@ import path from 'path'
 import Koa from 'koa'
 import serve from 'koa-static'
 import body from 'koa-body'
+import session from 'koa-session2'
+import passport from 'koa-passport'
 
 import config from './config'
 import { connect as dbConnect } from './helpers/dbConnector'
 import { getResponse } from './helpers/response'
+import { init as strategiesInit } from './helpers/strategies'
+import { setApiContentType } from './helpers/middlewares'
 import * as router from './routes'
 
-const { port, url } = config
+const { port, url, sessionKey } = config
 const app = new Koa()
 
 async function start() {
@@ -19,6 +23,11 @@ async function start() {
       ctx.body = getResponse({ message: err.message || 'IternalServerError' }, err.status)
     })
 
+    strategiesInit()
+    app.use(setApiContentType(app))
+    app.use(session({ key: sessionKey }))
+    app.use(passport.initialize())
+    app.use(passport.session())
     app.use(body())
     app.use(serve(path.join(__dirname, '/../../dist/public')))
     
