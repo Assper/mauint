@@ -1,7 +1,7 @@
 /* eslint-env node, jest */
 
 import request from 'supertest'
-import { destroyServer, databaseDisconnect } from './helpers'
+import { destroyServer, databaseDisconnect } from './utils'
 import { start } from '../../src/backend/app'
 
 describe('/', () => {
