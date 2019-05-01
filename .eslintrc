@@ -17,7 +17,7 @@
     "sourceType": "module"
   },
   "plugins": [
-      "react"
+    "react"
   ],
   "rules": {
     "accessor-pairs": "error",
@@ -37,8 +37,8 @@
     "block-scoped-var": "error",
     "block-spacing": "error",
     "brace-style": [
-        "error",
-        "1tbs"
+      "error",
+      "1tbs"
     ],
     "callback-return": "error",
     "camelcase": "error",

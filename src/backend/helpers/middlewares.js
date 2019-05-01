@@ -1,5 +1,5 @@
 export function setApiContentType(app) {
-  return (ctx, next) => {
+  return async (ctx, next) => {
     const isApi = ctx.url.split('/').includes('api')
     app.context.isApi = isApi
     if (isApi) {
