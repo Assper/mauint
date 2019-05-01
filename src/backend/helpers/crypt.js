@@ -8,7 +8,7 @@ const digest = 'sha512'
 const encoding = 'hex'
 const { globalSalt } = config
 
-async function pbkdf2Async(password, salt) {
+export async function pbkdf2Async(password, salt) {
   return new Promise((resolve, reject) => {
     crypto.pbkdf2(password, salt, iterations, passwordLength, digest, (err, hash) => {
       return err ? reject(hash) : resolve(hash)

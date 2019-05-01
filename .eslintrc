@@ -17,11 +17,11 @@
     "sourceType": "module"
   },
   "plugins": [
-      "react"
+    "react"
   ],
   "rules": {
     "accessor-pairs": "error",
-    "array-bracket-newline": "error",
+    "array-bracket-newline": "off",
     "array-bracket-spacing": "error",
     "array-callback-return": "error",
     "array-element-newline": "off",
@@ -37,12 +37,12 @@
     "block-scoped-var": "error",
     "block-spacing": "error",
     "brace-style": [
-        "error",
-        "1tbs"
+      "error",
+      "1tbs"
     ],
     "callback-return": "error",
     "camelcase": "error",
-    "capitalized-comments": "error",
+    "capitalized-comments": "off",
     "class-methods-use-this": "error",
     "comma-dangle": "error",
     "comma-spacing": [
@@ -76,7 +76,7 @@
     "guard-for-in": "error",
     "handle-callback-err": "error",
     "id-blacklist": "error",
-    "id-length": "error",
+    "id-length": "off",
     "id-match": "error",
     "implicit-arrow-linebreak": "error",
     "indent": "off",
@@ -92,10 +92,7 @@
       }
     ],
     "line-comment-position": "error",
-    "linebreak-style": [
-      "error",
-      "windows"
-    ],
+    "linebreak-style": "off",
     "lines-around-comment": "error",
     "lines-around-directive": "error",
     "lines-between-class-members": "error",
@@ -118,7 +115,7 @@
     "no-alert": "error",
     "no-array-constructor": "error",
     "no-async-promise-executor": "error",
-    "no-await-in-loop": "error",
+    "no-await-in-loop": "off",
     "no-bitwise": "error",
     "no-buffer-constructor": "error",
     "no-caller": "error",
@@ -168,7 +165,7 @@
     "no-octal-escape": "error",
     "no-param-reassign": "error",
     "no-path-concat": "error",
-    "no-plusplus": "error",
+    "no-plusplus": "off",
     "no-process-env": "off",
     "no-process-exit": "off",
     "no-proto": "error",
