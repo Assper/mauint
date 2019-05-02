@@ -12,7 +12,6 @@ export const auth = new Router({ prefix: '/api/auth' })
 auth.post('/login',
   required(['email', 'password']),
   validator({
-    name: userNameValidator,
     email: emailValidator,
     password: passwordValidator
   }),

@@ -3,6 +3,7 @@ export function getStatus(code) {
     case 500:
     case 400:
     case 406:
+    case 401:
       return 'ERROR'
     case 404:
       return 'NOT FOUND'
