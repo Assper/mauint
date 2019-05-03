@@ -5,7 +5,7 @@ import { getStatus, getResponse } from '../../../src/backend/helpers/response'
 describe('Response helper', () => {
   it('getStatus', () => {
     const codes = {
-      errors: [500, 400, 406],
+      errors: [500, 400, 406, 401],
       notFound: [404]
     }
 

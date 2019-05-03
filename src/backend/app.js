@@ -32,7 +32,7 @@ export async function start() {
     app.use(passport.initialize())
     app.use(passport.session())
 
-    app.use(serve(path.join(__dirname, '/../../dist/public')))
+    app.use(serve(path.join(__dirname, '/../../dist/frontend')))
     app.use(router.auth.routes())
     app.use(router.app.routes())
     

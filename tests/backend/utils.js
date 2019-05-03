@@ -36,3 +36,9 @@ export function destroyServer(server) {
   enableDestroy(server)
   server.destroy()
 }
+
+export async function deleteTestUsers(pattern = /@testmail/) {
+  const users = await User.find({ email: pattern }).lean()
+  await Token.deleteMany({ user: { $in: users.map((user) => user._id) } })
+  await User.deleteMany({ email: pattern })
+}
