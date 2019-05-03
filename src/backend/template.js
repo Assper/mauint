@@ -9,7 +9,7 @@ export default `
 </head>
 <body>
   <div id="root"></div>
-  <script src="/script.js"></script>
+  <script src="/bundle.js"></script>
 </body>
 </html>
 `

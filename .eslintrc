@@ -4,7 +4,10 @@
     "es6": true,
     "node": true
   },
-  "extends": "eslint:recommended",
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
@@ -19,7 +22,22 @@
   "plugins": [
     "react"
   ],
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
+  },
   "rules": {
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
     "accessor-pairs": "error",
     "array-bracket-newline": "off",
     "array-bracket-spacing": "error",
@@ -225,7 +243,7 @@
     "prefer-destructuring": "error",
     "prefer-named-capture-group": "error",
     "prefer-numeric-literals": "error",
-    "prefer-object-spread": "error",
+    "prefer-object-spread": "off",
     "prefer-promise-reject-errors": "error",
     "prefer-reflect": "off",
     "prefer-rest-params": "off",
