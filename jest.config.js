@@ -9,5 +9,8 @@ module.exports = {
     'jsx'
   ],
   testEnvironment: 'node',
-  setupFiles: ['<rootDir>/node_modules/regenerator-runtime/runtime']
+  setupFiles: [
+    '<rootDir>/node_modules/regenerator-runtime/runtime',
+    '<rootDir>/tests/setup.js'
+  ]
 }
