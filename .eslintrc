@@ -12,6 +12,7 @@
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
   },
+  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -61,7 +62,7 @@
     "callback-return": "error",
     "camelcase": "error",
     "capitalized-comments": "off",
-    "class-methods-use-this": "error",
+    "class-methods-use-this": "off",
     "comma-dangle": "error",
     "comma-spacing": [
       "error",
@@ -84,10 +85,7 @@
     "func-call-spacing": "error",
     "func-name-matching": "error",
     "func-names": "error",
-    "func-style": [
-      "error",
-      "declaration"
-    ],
+    "func-style": "off",
     "function-paren-newline": "off",
     "generator-star-spacing": "error",
     "global-require": "error",
