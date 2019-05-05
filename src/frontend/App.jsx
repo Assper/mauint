@@ -10,14 +10,14 @@ import { GlobalStyle, theme } from './styles/theme'
 class App extends Component {
   render() {
     return (
-      <Router>
-        <GlobalStyle />
-        <Provider store={store}>
-          <ThemeProvider theme={theme}>
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          <Router>
+            <GlobalStyle />
             <Root />
-          </ThemeProvider>
-        </Provider>
-      </Router>
+          </Router>
+        </ThemeProvider>
+      </Provider>
     )
   }
 }
