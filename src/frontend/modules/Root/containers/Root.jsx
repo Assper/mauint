@@ -1,24 +1,24 @@
 import React, { Component } from 'react'
-import { withRouter, Switch, Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import {
+  withRouter,
+  Switch,
+  Route,
+  Redirect
+} from 'react-router-dom'
 
 import { NAME } from '../constants'
 import { actions } from '../actions'
 
 import NotFound from '../../common/NotFound.jsx'
-
 import { Auth } from '../../Auth'
 
 class Root extends Component {
-  renderHome() {
-    return <Redirect to="/auth" />
-  }
-
   render() {
     return (
       <Switch>
-        <Route exact path="/" render={this.renderHome} />
+        <Route exact path="/" render={() => <Redirect to="/auth" />} />
         <Route path="/auth" component={Auth} />
         <Route component={NotFound} />
       </Switch>

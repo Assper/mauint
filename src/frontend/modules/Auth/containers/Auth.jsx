@@ -13,18 +13,20 @@ import { NAME } from '../constants'
 import { actions } from '../actions'
 
 import NotFound from '../../common/NotFound.jsx'
+import Login from '../components/Login.jsx'
 
 class Auth extends Component {
-  redirectToLogin() {
-    return <Redirect to="/login" />
+  loginSubmit = (values) => {
+    // event.preventDefault()
+    console.log('VALUES', values)
   }
 
   render() {
     return (
       <BrowserRouter basename="/auth">
         <Switch>
-          <Route exact path="/" render={this.redirectToLogin} />
-          <Route path="/login" render={() => <div>Login</div>} />
+          <Route exact path="/" render={() => <Redirect to="/login" />} />
+          <Route path="/login" render={() => <Login onSubmit={this.loginSubmit} />} />
           <Route path="/signup" render={() => <div>Signup</div>} />
           <Route path="/restore" render={() => <div>Restore</div>} />
           <Route component={NotFound} />
