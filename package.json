@@ -5,13 +5,15 @@
   "main": "src/backend/index.js",
   "scripts": {
     "start": "nodemon --exec babel-node src/backend/index.js",
-    "watch": "webpack --mode development --watch",
+    "watch": "webpack --watch",
     "build": "npm run compile:backend && npm run compile:frontend",
-    "compile:frontend": "webpack --mode production",
+    "compile:frontend": "webpack --config webpack.config.prod.js",
     "compile:backend": "",
     "lint": "./node_modules/.bin/eslint ./src",
     "fix": "./node_modules/.bin/eslint --fix ./src",
-    "test": "jest --detectOpenHandles"
+    "test": "npm run test:backend && npm run test:frontend",
+    "test:frontend": "jest ./tests/frontend",
+    "test:backend": "jest ./tests/backend --testEnvironment node"
   },
   "repository": {
     "type": "git",
@@ -29,11 +31,14 @@
   "devDependencies": {
     "@babel/core": "^7.4.3",
     "@babel/node": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/preset-env": "^7.4.3",
     "@babel/preset-react": "^7.0.0",
+    "@types/react-router-dom": "^4.3.3",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.7.1",
     "babel-loader": "^8.0.5",
+    "compression-webpack-plugin": "^2.0.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
     "eslint": "^5.16.0",
@@ -43,6 +48,7 @@
     "nodemon": "^1.18.11",
     "server-destroy": "^1.0.1",
     "supertest": "^4.0.2",
+    "uglifyjs-webpack-plugin": "^2.1.2",
     "webpack": "^4.30.0",
     "webpack-cli": "^3.3.0"
   },
@@ -63,10 +69,13 @@
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.2",
     "react-router": "^5.0.0",
+    "react-router-dom": "^5.0.0",
     "redux": "^4.0.1",
     "redux-api-middleware": "^3.0.1",
     "redux-form": "^8.2.0",
     "redux-thunk": "^2.3.0",
-    "uuid": "^3.3.2"
+    "styled-components": "^4.2.0",
+    "uuid": "^3.3.2",
+    "validator": "^10.11.0"
   }
 }

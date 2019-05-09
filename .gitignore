@@ -64,3 +64,4 @@ typings/
 
 dist/
 __snapshots__/
+.idea/

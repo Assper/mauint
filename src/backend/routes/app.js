@@ -3,6 +3,6 @@ import template from '../template'
 
 export const app = new Router()
 
-app.get('/', (ctx) => {
+app.get('*', (ctx) => {
   ctx.body = template
 })
