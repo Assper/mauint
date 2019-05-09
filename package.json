@@ -11,7 +11,9 @@
     "compile:backend": "",
     "lint": "./node_modules/.bin/eslint ./src",
     "fix": "./node_modules/.bin/eslint --fix ./src",
-    "test": "jest --detectOpenHandles"
+    "test": "npm run test:backend && npm run test:frontend",
+    "test:frontend": "jest ./tests/frontend",
+    "test:backend": "jest ./tests/backend --testEnvironment node"
   },
   "repository": {
     "type": "git",
@@ -73,6 +75,7 @@
     "redux-form": "^8.2.0",
     "redux-thunk": "^2.3.0",
     "styled-components": "^4.2.0",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+    "validator": "^10.11.0"
   }
 }

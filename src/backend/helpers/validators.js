@@ -39,7 +39,7 @@ export const passwordValidator = [
   }),
   validate({
     validator: 'matches',
-    arguments: /^[A-Za-z0-9!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]+$/i,
+    arguments: /^[a-z0-9!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]+$/i,
     message: 'PasswordShouldBeValid'
   })
 ]

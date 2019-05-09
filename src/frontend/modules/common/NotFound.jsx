@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { Wrapper } from '../../styles/common'
+import { AppWrapper } from '../../styles/common'
 
 class NotFound extends Component {
   render() {
-    return <Wrapper>Not Found</Wrapper>
+    return <AppWrapper>Not Found</AppWrapper>
   }
 }
 

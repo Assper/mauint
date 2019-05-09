@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Field, reduxForm } from 'redux-form'
 
+import { validateLogin } from '../services/validate'
+
 import {
   Form,
   Button,
@@ -39,4 +41,4 @@ class Login extends Component {
   }
 }
 
-export default reduxForm({ form: 'login' })(Login)
+export default reduxForm({ form: 'login', validate: validateLogin })(Login)

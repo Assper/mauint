@@ -14,24 +14,28 @@ import { actions } from '../actions'
 
 import NotFound from '../../common/NotFound.jsx'
 import Login from '../components/Login.jsx'
+import { CommonError, Wrapper } from '../../../styles/common'
 
 class Auth extends Component {
-  loginSubmit = (values) => {
-    // event.preventDefault()
-    console.log('VALUES', values)
-  }
-
   render() {
+    const {
+      loginSubmit,
+      error
+    } = this.props
+
     return (
-      <BrowserRouter basename="/auth">
-        <Switch>
-          <Route exact path="/" render={() => <Redirect to="/login" />} />
-          <Route path="/login" render={() => <Login onSubmit={this.loginSubmit} />} />
-          <Route path="/signup" render={() => <div>Signup</div>} />
-          <Route path="/restore" render={() => <div>Restore</div>} />
-          <Route component={NotFound} />
-        </Switch>
-      </BrowserRouter>
+      <Wrapper>
+        <BrowserRouter basename="/auth">
+          <Switch>
+            <Route exact path="/" render={() => <Redirect to="/login" />} />
+            <Route path="/login" render={() => <Login onSubmit={loginSubmit} />} />
+            <Route path="/signup" render={() => <div>Signup</div>} />
+            <Route path="/restore" render={() => <div>Restore</div>} />
+            <Route component={NotFound} />
+          </Switch>
+        </BrowserRouter>
+        {error && <CommonError>{error}</CommonError>}
+      </Wrapper>
     )
   }
 }
