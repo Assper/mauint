@@ -5,7 +5,7 @@ import { validateLogin } from '../services/validate'
 
 import {
   Form,
-  Button,
+  PrimaryButton,
   Label,
   FieldSet
 } from '../../../styles/common'
@@ -35,7 +35,7 @@ class Login extends Component {
             name="password"
           />
         </FieldSet>
-        <Button type="submit">Login</Button>
+        <PrimaryButton type="submit">Login</PrimaryButton>
       </Form>
     )
   }

@@ -7,6 +7,7 @@ import {
 
 export function FormInput(field) {
   const { error, touched } = field.meta
+  const isShowError = !!(touched && error)
 
   return (
     <InputBlock>
@@ -14,8 +15,9 @@ export function FormInput(field) {
         {...field.input}
         placeholder={field.placeholder}
         type={field.type}
+        error={isShowError}
       />
-      {touched && error && <ErrorMessage>{error}</ErrorMessage>}
+      {isShowError && <ErrorMessage>{error}</ErrorMessage>}
     </InputBlock>
   )
 }

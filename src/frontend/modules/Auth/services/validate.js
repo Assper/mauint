@@ -30,10 +30,8 @@ export function validateEmail(email) {
 }
 
 export function validateLogin({ email, password }) {
-  const errors = {
+  return {
     email: validateEmail(email),
     password: validatePassword(password)
   }
-
-  return errors
 }
