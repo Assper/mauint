@@ -13,13 +13,15 @@ import { NAME } from '../constants'
 import { actions } from '../actions'
 
 import NotFound from '../../common/NotFound.jsx'
-import Login from '../components/Login.jsx'
 import { CommonError, Wrapper } from '../../../styles/common'
+import Login from '../components/Login.jsx'
+import Signup from '../components/Signup.jsx'
 
 class Auth extends Component {
   render() {
     const {
       loginSubmit,
+      signupSubmit,
       error
     } = this.props
 
@@ -29,7 +31,7 @@ class Auth extends Component {
           <Switch>
             <Route exact path="/" render={() => <Redirect to="/login" />} />
             <Route path="/login" render={() => <Login onSubmit={loginSubmit} />} />
-            <Route path="/signup" render={() => <div>Signup</div>} />
+            <Route path="/signup" render={() => <Signup onSubmit={signupSubmit} />} />
             <Route path="/restore" render={() => <div>Restore</div>} />
             <Route component={NotFound} />
           </Switch>
