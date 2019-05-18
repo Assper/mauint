@@ -99,7 +99,7 @@ export async function restore(ctx) {
 
     const password = generatePassword()
     const { hash, salt } = await hashPassword(password)
-    user.hash = hash
+    user.password = hash
     user.salt = salt
 
     await user.save()

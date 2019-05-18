@@ -59,3 +59,9 @@ export function validateSignup({ email, name, password, repassword }) {
     repassword: validateRepassword(password, repassword)
   }
 }
+
+export function validateRestore({ email }) {
+  return {
+    email: validateEmail(email)
+  }
+}

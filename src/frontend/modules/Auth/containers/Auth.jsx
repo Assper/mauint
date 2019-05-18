@@ -16,12 +16,14 @@ import NotFound from '../../common/NotFound.jsx'
 import { CommonError, Wrapper } from '../../../styles/common'
 import Login from '../components/Login.jsx'
 import Signup from '../components/Signup.jsx'
+import Restore from '../components/Restore.jsx'
 
 class Auth extends Component {
   render() {
     const {
       loginSubmit,
       signupSubmit,
+      restoreSubmit,
       error
     } = this.props
 
@@ -32,7 +34,7 @@ class Auth extends Component {
             <Route exact path="/" render={() => <Redirect to="/login" />} />
             <Route path="/login" render={() => <Login onSubmit={loginSubmit} />} />
             <Route path="/signup" render={() => <Signup onSubmit={signupSubmit} />} />
-            <Route path="/restore" render={() => <div>Restore</div>} />
+            <Route path="/restore" render={() => <Restore onSubmit={restoreSubmit} />} />
             <Route component={NotFound} />
           </Switch>
         </BrowserRouter>

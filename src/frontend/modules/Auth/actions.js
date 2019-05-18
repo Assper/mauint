@@ -37,7 +37,7 @@ function loginSubmit(values) {
 
 function signupSubmit(values) {
   delete values.repassword
-  
+
   return (dispatch) => dispatch({
     [RSAA]: {
       types: [
@@ -64,8 +64,36 @@ function signupSubmit(values) {
   })
 }
 
+function restoreSubmit(values) {
+  return (dispatch) => dispatch({
+    [RSAA]: {
+      types: [
+        types.RESTORE_REQUEST,
+        {
+          type: types.RESTORE_SUCCESS,
+          payload: async (action, state, res) => {
+            await res.json()
+          }
+        },
+        {
+          type: types.RESTORE_FAILURE,
+          payload: async (action, state, res) => {
+            const data = await res.json()
+            dispatch(showError(data.response.message))
+          }
+        }
+      ],
+      endpoint: `${entryPoint}/restore`,
+      body: JSON.stringify(values),
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    }
+  })
+}
+
 export const actions = {
   loginSubmit,
   signupSubmit,
+  restoreSubmit,
   showError
 }
