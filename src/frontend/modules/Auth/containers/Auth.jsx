@@ -1,43 +1,50 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import {
-  withRouter,
-  Switch,
-  BrowserRouter,
-  Route,
-  Redirect
-} from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 
 import { NAME } from '../constants'
 import { actions } from '../actions'
 
-import NotFound from '../../common/NotFound.jsx'
 import { CommonError, Wrapper } from '../../../styles/common'
 import Login from '../components/Login.jsx'
 import Signup from '../components/Signup.jsx'
 import Restore from '../components/Restore.jsx'
 
 class Auth extends Component {
-  render() {
+  constructor(props) {
+    super(props)
+    this.routes = this.routes.bind(this)
+  }
+
+  path(path) {
+    const { basePath = '/' } = this.props
+    return path ? `${basePath}/${path}` : basePath
+  }
+
+  routes() {
     const {
       loginSubmit,
       signupSubmit,
-      restoreSubmit,
-      error
+      restoreSubmit
     } = this.props
 
     return (
+      <Fragment>
+        <Route exact path={this.path()} render={() => <Redirect to={this.path('login')} />} />
+        <Route path={this.path('login')} render={() => <Login onSubmit={loginSubmit} />} />
+        <Route path={this.path('signup')} render={() => <Signup onSubmit={signupSubmit} />} />
+        <Route path={this.path('restore')} render={() => <Restore onSubmit={restoreSubmit} />} />
+      </Fragment>
+    )
+  }
+
+  render() {
+    const { error } = this.props
+
+    return (
       <Wrapper>
-        <BrowserRouter basename="/auth">
-          <Switch>
-            <Route exact path="/" render={() => <Redirect to="/login" />} />
-            <Route path="/login" render={() => <Login onSubmit={loginSubmit} />} />
-            <Route path="/signup" render={() => <Signup onSubmit={signupSubmit} />} />
-            <Route path="/restore" render={() => <Restore onSubmit={restoreSubmit} />} />
-            <Route component={NotFound} />
-          </Switch>
-        </BrowserRouter>
+        {this.routes()}
         {error && <CommonError>{error}</CommonError>}
       </Wrapper>
     )
@@ -47,4 +54,4 @@ class Auth extends Component {
 const mapStateToProps = (state) => state[NAME]
 const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch)
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Auth))
+export default connect(mapStateToProps, mapDispatchToProps)(Auth)

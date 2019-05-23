@@ -11,17 +11,22 @@ import {
 import { NAME } from '../constants'
 import { actions } from '../actions'
 
-import NotFound from '../../common/NotFound.jsx'
+import { AppWrapper } from '../../../styles/common'
 import { Auth } from '../../Auth'
+import NotFound from '../../common/NotFound.jsx'
+import TopBar from '../components/TopBar.jsx'
 
 class Root extends Component {
   render() {
     return (
-      <Switch>
-        <Route exact path="/" render={() => <Redirect to="/auth" />} />
-        <Route path="/auth" component={Auth} />
-        <Route component={NotFound} />
-      </Switch>
+      <AppWrapper>
+        <TopBar />
+        <Switch>
+          <Route exact path="/" render={() => <Redirect to="/auth/login" />} />
+          <Auth basePath="/auth" />
+          <Route component={NotFound} />
+        </Switch>
+      </AppWrapper>
     )
   }
 }

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 export const AppWrapper = styled.div`
   width: 100%;
@@ -92,4 +93,16 @@ export const CommonError = styled.p`
   width: 100%;
   text-align: center;
   margin: 0;
+`
+
+export const A = styled(Link)`
+  color: ${({ theme }) => theme.color.primary};
+  margin-right: ${({ theme }) => theme.indent.normal};
+  font-size: ${({ theme }) => theme.size.text.normal};
+  text-decoration: none;
+
+  &:visited,
+  &:active {
+    color: ${({ theme }) => theme.color.primary};
+  }
 `
