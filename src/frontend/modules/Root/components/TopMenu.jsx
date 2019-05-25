@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Wrapper, A } from '../../../styles/common'
 import { NavBar, ColLeft, ColRight } from '../styles'
 
-class TopBar extends Component {
+class TopMenu extends Component {
   render () {
     return (
       <Wrapper>
@@ -20,4 +20,4 @@ class TopBar extends Component {
   }
 }
 
-export default TopBar
+export default TopMenu

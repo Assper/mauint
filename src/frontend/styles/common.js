@@ -7,7 +7,22 @@ export const AppWrapper = styled.div`
 `
 
 export const Wrapper = styled.div`
+`
+
+export const Main = styled.main`
+  padding: ${({ theme }) => theme.indent.normal};
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+export const Row = styled.div`
+  display: flex;
+`
+
+export const ButtonsRow = styled(Row)`
+  align-items: center;
 `
 
 export const Form = styled.form``
@@ -18,6 +33,7 @@ export const Button = styled.button`
   color: ${({ theme }) => theme.color.regular};
   border: ${({ theme }) => theme.border.regular};
   background-color: ${({ theme }) => theme.color.gray};
+  margin-right: ${({ theme }) => theme.indent.normal};
   border-radius: 5px;
   outline: none;
   font-weight: bold;
@@ -57,6 +73,7 @@ export const Input = styled.input`
   border-radius: 4px;
   outline: none;
   width: 100%;
+  min-width: 290px;
   
   &:focus {
     border-color: ${({ theme, error }) => {

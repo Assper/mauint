@@ -7,7 +7,9 @@ import {
   Form,
   PrimaryButton,
   Label,
-  FieldSet
+  FieldSet,
+  ButtonsRow,
+  A
 } from '../../../styles/common'
 import { FormInput } from '../../common/FormFields.jsx'
 
@@ -53,7 +55,11 @@ class Signup extends Component {
             name="repassword"
           />
         </FieldSet>
-        <PrimaryButton type="submit">Signup</PrimaryButton>
+        <ButtonsRow>
+          <PrimaryButton type="submit">Signup</PrimaryButton>
+          <A to="/auth/login">login</A>
+          <A to="/auth/restore">restore</A>
+        </ButtonsRow>
       </Form>
     )
   }

@@ -7,7 +7,9 @@ import {
   Form,
   PrimaryButton,
   Label,
-  FieldSet
+  FieldSet,
+  ButtonsRow,
+  A
 } from '../../../styles/common'
 import { FormInput } from '../../common/FormFields.jsx'
 
@@ -26,7 +28,11 @@ class Restore extends Component {
             name="email"
           />
         </FieldSet>
-        <PrimaryButton type="submit">Restore</PrimaryButton>
+        <ButtonsRow>
+          <PrimaryButton type="submit">Restore</PrimaryButton>
+          <A to="/auth/login">login</A>
+          <A to="/auth/signup">signup</A>
+        </ButtonsRow>
       </Form>
     )
   }
