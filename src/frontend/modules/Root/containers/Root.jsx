@@ -13,6 +13,7 @@ import { actions } from '../actions'
 
 import { AppWrapper, Row, Main } from '../../../styles/common'
 import { Auth } from '../../Auth'
+import { Integrations } from '../../Integrations'
 import NotFound from '../../common/NotFound.jsx'
 import TopMenu from '../components/TopMenu.jsx'
 import SideMenu from '../components/SideMenu.jsx'
@@ -27,7 +28,8 @@ class Root extends Component {
           <Main>
             <Switch>
               <Route exact path="/" render={() => <Redirect to="/auth/login" />} />
-              <Auth basePath="/auth" />
+              <Route path="/auth" render={() => <Auth basePath="/auth" />} />
+              <Route path="/integrations" render={() => <Integrations basePath="/integrations" />} />
               <Route component={NotFound} />
             </Switch>
           </Main>

@@ -94,6 +94,5 @@ function restoreSubmit(values) {
 export const actions = {
   loginSubmit,
   signupSubmit,
-  restoreSubmit,
-  showError
+  restoreSubmit
 }

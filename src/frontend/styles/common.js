@@ -123,3 +123,8 @@ export const A = styled(Link)`
     color: ${({ theme }) => theme.color.primary};
   }
 `
+
+export const Text = styled.p`
+  color: ${({ theme }) => theme.color.regular};
+  font-size: ${({ theme }) => theme.size.text.normal};
+`
