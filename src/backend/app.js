@@ -3,7 +3,6 @@ import path from 'path'
 import Koa from 'koa'
 import serve from 'koa-static'
 import body from 'koa-body'
-import session from 'koa-session2'
 import passport from 'koa-passport'
 
 import config from './config'
@@ -13,7 +12,6 @@ import { init as strategiesInit } from './helpers/strategies'
 import { setApiContentType } from './helpers/middlewares'
 import * as router from './routes'
 
-const { sessionKey } = config
 export const app = new Koa()
 
 export async function start() {
@@ -28,7 +26,6 @@ export async function start() {
     app.use(setApiContentType(app))
     app.use(body())
 
-    app.use(session({ key: sessionKey }))
     app.use(passport.initialize())
     app.use(passport.session())
 

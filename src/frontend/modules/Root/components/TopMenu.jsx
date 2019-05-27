@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { Wrapper, A } from '../../../styles/common'
+import { isAuthorized, logout } from '../../../service'
 import { NavBar, ColLeft, ColRight } from '../styles'
 
 class TopMenu extends Component {
@@ -11,8 +12,13 @@ class TopMenu extends Component {
             <A to="/">Home</A>
           </ColLeft>
           <ColRight>
-            <A to="/auth/login">login</A>
-            <A to="/auth/signup">signup</A>
+            {!isAuthorized()
+              ? <Fragment>
+                  <A to="/auth/login">login</A>
+                  <A to="/auth/signup">signup</A>
+                </Fragment>
+              : <A to="/" onClick={logout}>logout</A>
+            }
           </ColRight>
         </NavBar>
       </Wrapper>

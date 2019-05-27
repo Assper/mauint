@@ -1,5 +1,6 @@
 import { RSAA } from 'redux-api-middleware'
 import { types, entryPoint } from './constants'
+import { actions as rootActions } from '../Root'
 
 function showError(error) {
   return {
@@ -16,7 +17,8 @@ function loginSubmit(values) {
         {
           type: types.LOGIN_SUCCESS,
           payload: async (action, state, res) => {
-            await res.json()
+            const data = await res.json()
+            dispatch(rootActions.setUserData(data.response.user))
           }
         },
         {
@@ -44,8 +46,12 @@ function signupSubmit(values) {
         types.SIGNUP_REQUEST,
         {
           type: types.SIGNUP_SUCCESS,
-          payload: async (action, state, res) => {
-            await res.json()
+          payload: () => {
+            const data = {
+              email: values.email,
+              password: values.password
+            }
+            loginSubmit(data)
           }
         },
         {

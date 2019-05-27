@@ -46,6 +46,7 @@ export async function login(ctx) {
     delete user.salt
     delete user._id
     user.token = token
+    ctx.cookies.set('token', token, { httpOnly: false })
 
     ctx.status = 200
     ctx.body = getResponse({ user }, ctx.status)

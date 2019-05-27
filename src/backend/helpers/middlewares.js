@@ -1,3 +1,5 @@
+import Token from '../models/Token'
+
 export function setApiContentType(app) {
   return async (ctx, next) => {
     const isApi = ctx.url.split('/').includes('api')
@@ -52,5 +54,21 @@ export function required(fields) {
       console.error('REQUIRED ERROR', err)
       ctx.app.emit('error', err, ctx)
     }
+  }
+}
+
+export async function authGuard(ctx, next) {
+  try {
+    const userToken = ctx.cookies.get('token')
+    const token = await Token.findOne({ uuid: userToken })
+
+    if (!token) {
+      ctx.throw(401, 'Unauthorized')
+    }
+
+    return next()
+  } catch (err) {
+    console.error('AUTH GUARD ERROR', err)
+    ctx.app.emit('error', err, ctx)
   }
 }
