@@ -12,6 +12,7 @@ export function reducer(state = initialState, action) {
         error: action.payload.error
       }
     case types.LOGIN_SUCCESS:
+    case types.SIGNUP_SUCCESS:
       return {
         ...state,
         error: ''

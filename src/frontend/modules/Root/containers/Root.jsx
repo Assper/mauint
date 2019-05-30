@@ -8,20 +8,68 @@ import {
   Redirect
 } from 'react-router-dom'
 
+import { isAuthorized } from '../../../service'
 import { NAME } from '../constants'
 import { actions } from '../actions'
 
-import NotFound from '../../common/NotFound.jsx'
+import { AppWrapper, Row, Main } from '../../../styles/common'
 import { Auth } from '../../Auth'
+import { Integrations } from '../../Integrations'
+import NotFound from '../../common/NotFound.jsx'
+import TopMenu from '../components/TopMenu.jsx'
+import SideMenu from '../components/SideMenu.jsx'
 
 class Root extends Component {
+  constructor(props) {
+    super(props)
+    this.redirectFromHome = this.redirectFromHome.bind(this)
+    this.redirectFromAuth = this.redirectFromAuth.bind(this)
+  }
+
+  componentWillMount() {
+    const {
+      userData,
+      getUserData
+    } = this.props
+
+    const isNeedToGetUserData = isAuthorized() && (!userData || !Object.keys(userData).length)
+    if (isNeedToGetUserData) {
+      getUserData()
+    }
+  }
+
+  redirectFromHome() {
+    if (isAuthorized()) {
+      return <Redirect to="/integrations" />
+    }
+
+    return <Redirect to="/auth/login" />
+  }
+
+  redirectFromAuth() {
+    if (isAuthorized()) {
+      return <Redirect to="/integrations" />
+    }
+
+    return <Auth basePath="/auth" />
+  }
+
   render() {
     return (
-      <Switch>
-        <Route exact path="/" render={() => <Redirect to="/auth" />} />
-        <Route path="/auth" component={Auth} />
-        <Route component={NotFound} />
-      </Switch>
+      <AppWrapper>
+        <TopMenu />
+        <Row>
+          <SideMenu />
+          <Main>
+            <Switch>
+              <Route exact path="/" render={this.redirectFromHome} />
+              <Route path="/auth" render={this.redirectFromAuth} />
+              <Route path="/integrations" render={() => <Integrations basePath="/integrations" />} />
+              <Route component={NotFound} />
+            </Switch>
+          </Main>
+        </Row>
+      </AppWrapper>
     )
   }
 }

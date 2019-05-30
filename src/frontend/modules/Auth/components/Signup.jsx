@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Field, reduxForm } from 'redux-form'
 
-import { validateLogin } from '../services/validate'
+import { validateSignup } from '../services/validate'
 
 import {
   Form,
@@ -13,7 +13,7 @@ import {
 } from '../../../styles/common'
 import { FormInput } from '../../common/FormFields.jsx'
 
-class Login extends Component {
+class Signup extends Component {
   render() {
     const { handleSubmit } = this.props
 
@@ -29,6 +29,15 @@ class Login extends Component {
           />
         </FieldSet>
         <FieldSet>
+          <Label htmlFor="name">Name:</Label>
+          <Field
+            component={FormInput}
+            type="text"
+            placeholder="Name"
+            name="name"
+          />
+        </FieldSet>
+        <FieldSet>
           <Label htmlFor="password">Password:</Label>
           <Field
             component={FormInput}
@@ -37,9 +46,18 @@ class Login extends Component {
             name="password"
           />
         </FieldSet>
+        <FieldSet>
+          <Label htmlFor="repassword">Retype password:</Label>
+          <Field
+            component={FormInput}
+            type="password"
+            placeholder="Retype password"
+            name="repassword"
+          />
+        </FieldSet>
         <ButtonsRow>
-          <PrimaryButton type="submit">Login</PrimaryButton>
-          <A to="/auth/signup">signup</A>
+          <PrimaryButton type="submit">Signup</PrimaryButton>
+          <A to="/auth/login">login</A>
           <A to="/auth/restore">restore</A>
         </ButtonsRow>
       </Form>
@@ -47,4 +65,4 @@ class Login extends Component {
   }
 }
 
-export default reduxForm({ form: 'login', validate: validateLogin })(Login)
+export default reduxForm({ form: 'signup', validate: validateSignup })(Signup)

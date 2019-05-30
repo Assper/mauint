@@ -4,7 +4,10 @@ export const errorMessages = {
   invalidEmail: 'Email should be valid',
   passwordTypeMismatched: 'Password should be a string',
   passwordInvalidLength: 'Password length should be 8-30',
-  invalidPassword: 'Password have invalid characters'
+  invalidPassword: 'Password have invalid characters',
+  invalidRepassword: 'Passwords should be the same',
+  invalidName: 'Name should contain alphanumeric only',
+  invalidNameLength: 'Name length should be 3-32'
 }
 
 export function validatePassword(password) {
@@ -29,11 +32,36 @@ export function validateEmail(email) {
   return !email || !validator.isEmail(email) ? errorMessages.invalidEmail : ''
 }
 
+export function validateName(name) {
+  if (name && (name.length < 2 || name.length > 20)) {
+    return errorMessages.invalidNameLength
+  }
+
+  return !name || !validator.isAlphanumeric(name) ? errorMessages.invalidName : ''
+}
+
+export function validateRepassword(password, repassword) {
+  return password !== repassword ? errorMessages.invalidRepassword : ''
+}
+
 export function validateLogin({ email, password }) {
-  const errors = {
+  return {
     email: validateEmail(email),
     password: validatePassword(password)
   }
+}
 
-  return errors
+export function validateSignup({ email, name, password, repassword }) {
+  return {
+    email: validateEmail(email),
+    name: validateName(name),
+    password: validatePassword(password),
+    repassword: validateRepassword(password, repassword)
+  }
+}
+
+export function validateRestore({ email }) {
+  return {
+    email: validateEmail(email)
+  }
 }

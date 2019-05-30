@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Field, reduxForm } from 'redux-form'
 
-import { validateLogin } from '../services/validate'
+import { validateRestore } from '../services/validate'
 
 import {
   Form,
@@ -13,7 +13,7 @@ import {
 } from '../../../styles/common'
 import { FormInput } from '../../common/FormFields.jsx'
 
-class Login extends Component {
+class Restore extends Component {
   render() {
     const { handleSubmit } = this.props
 
@@ -28,23 +28,14 @@ class Login extends Component {
             name="email"
           />
         </FieldSet>
-        <FieldSet>
-          <Label htmlFor="password">Password:</Label>
-          <Field
-            component={FormInput}
-            type="password"
-            placeholder="Password"
-            name="password"
-          />
-        </FieldSet>
         <ButtonsRow>
-          <PrimaryButton type="submit">Login</PrimaryButton>
+          <PrimaryButton type="submit">Restore</PrimaryButton>
+          <A to="/auth/login">login</A>
           <A to="/auth/signup">signup</A>
-          <A to="/auth/restore">restore</A>
         </ButtonsRow>
       </Form>
     )
   }
 }
 
-export default reduxForm({ form: 'login', validate: validateLogin })(Login)
+export default reduxForm({ form: 'restore', validate: validateRestore })(Restore)
