@@ -2,13 +2,6 @@ import { RSAA } from 'redux-api-middleware'
 import { types, entryPoint } from './constants'
 import { actions as rootActions } from '../Root'
 
-function showError(error) {
-  return {
-    type: types.SHOW_ERROR,
-    payload: { error }
-  }
-}
-
 function loginSubmit(values) {
   return (dispatch) => dispatch({
     [RSAA]: {
@@ -19,13 +12,14 @@ function loginSubmit(values) {
           payload: async (action, state, res) => {
             const data = await res.json()
             dispatch(rootActions.setUserData(data.response.user))
+            dispatch(rootActions.showMessage({ type: 'success', text: 'Login Success' }))
           }
         },
         {
           type: types.LOGIN_FAILURE,
           payload: async (action, state, res) => {
             const data = await res.json()
-            dispatch(showError(data.response.message))
+            dispatch(rootActions.showMessage({ type: 'error', text: data.response.message }))
           }
         }
       ],
@@ -58,7 +52,7 @@ function signupSubmit(values) {
           type: types.SIGNUP_FAILURE,
           payload: async (action, state, res) => {
             const data = await res.json()
-            dispatch(showError(data.response.message))
+            dispatch(rootActions.showMessage({ type: 'error', text: data.response.message }))
           }
         }
       ],
@@ -85,7 +79,7 @@ function restoreSubmit(values) {
           type: types.RESTORE_FAILURE,
           payload: async (action, state, res) => {
             const data = await res.json()
-            dispatch(showError(data.response.message))
+            dispatch(rootActions.showMessage({ type: 'error', text: data.response.message }))
           }
         }
       ],

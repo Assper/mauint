@@ -18,6 +18,7 @@ import { Integrations } from '../../Integrations'
 import NotFound from '../../common/NotFound.jsx'
 import TopMenu from '../components/TopMenu.jsx'
 import SideMenu from '../components/SideMenu.jsx'
+import CommonMessages from '../components/CommonMessages.jsx'
 
 class Root extends Component {
   constructor(props) {
@@ -55,8 +56,14 @@ class Root extends Component {
   }
 
   render() {
+    const {
+      commonMessages,
+      hideMessage
+    } = this.props
+
     return (
       <AppWrapper>
+        <CommonMessages messages={commonMessages} hideMessage={hideMessage} />
         <TopMenu />
         <Row>
           <SideMenu />

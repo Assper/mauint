@@ -1,7 +1,8 @@
 import { types } from './constants'
 
 const initialState = {
-  userData: {}
+  userData: {},
+  commonMessages: []
 }
 
 export function reducer(state = initialState, action) {
@@ -21,6 +22,12 @@ export function reducer(state = initialState, action) {
       return {
         ...state,
         error: ''
+      }
+    case types.HIDE_MESSAGE:
+    case types.SHOW_MESSAGE:
+      return {
+        ...state,
+        commonMessages: action.payload
       }
     default:
       return { ...state }

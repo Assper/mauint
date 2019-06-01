@@ -1,10 +1,29 @@
 import { RSAA } from 'redux-api-middleware'
-import { types, entryPoint } from './constants'
+import { types, entryPoint, NAME } from './constants'
 
-function showError(error) {
-  return {
-    type: types.SHOW_ERROR,
-    payload: { error }
+function showMessage({ type, text }) {
+  return (dispatch, getState) => {
+    const state = getState()
+    const { commonMessages } = state[NAME]
+    commonMessages.push({ type, text })
+
+    dispatch({
+      type: types.HIDE_MESSAGE,
+      payload: [...commonMessages]
+    })
+  }
+}
+
+function hideMessage(index) {
+  return (dispatch, getState) => {
+    const state = getState()
+    const { commonMessages } = state[NAME]
+    commonMessages.splice(index, 1)
+
+    dispatch({
+      type: types.HIDE_MESSAGE,
+      payload: [...commonMessages]
+    })
   }
 }
 
@@ -31,7 +50,7 @@ function getUserData() {
           type: types.GET_USER_DATA_FAILURE,
           payload: async (action, state, res) => {
             const data = await res.json()
-            dispatch(showError(data.response.message))
+            dispatch(showMessage(data.response.message))
           }
         }
       ],
@@ -44,5 +63,7 @@ function getUserData() {
 
 export const actions = {
   setUserData,
-  getUserData
+  getUserData,
+  hideMessage,
+  showMessage
 }
